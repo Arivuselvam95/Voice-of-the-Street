@@ -101,12 +101,14 @@ const RecentComplaints: React.FC<RecentComplaintsProps> = ({ complaints }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {complaints.map((complaint) => {
+            // Use complaint._id or complaint.id as unique key
+            const key = complaint._id || complaint.id;
             const statusDisplay = getStatusDisplay(complaint.status);
             const typeDisplay = getTypeDisplay(complaint.type);
             const severityColor = getSeverityColor(complaint.severity);
             
             return (
-              <tr key={complaint.id} className="hover:bg-gray-50 transition-colors duration-150">
+              <tr key={key} className="hover:bg-gray-50 transition-colors duration-150">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">{complaint.title}</div>
                   <div className="text-sm text-gray-500 truncate max-w-xs">{complaint.description}</div>
